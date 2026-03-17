@@ -1,0 +1,34 @@
+# Frontend (Next.js config)
+frontEnd/node_modules
+frontEnd/.next
+frontEnd/out
+frontEnd/build
+frontEnd/.env
+frontEnd/.env.local
+frontEnd/.env.development.local
+frontEnd/.env.production.local
+frontEnd/coverage
+
+# Backend (Spring Boot, Java, Maven)
+backend/target/
+backend/pom.xml.tag
+backend/pom.xml.releaseBackup
+backend/pom.xml.versionsBackup
+backend/pom.xml.next
+backend/release.properties
+backend/dependency-reduced-pom.xml
+backend/buildNumber.properties
+backend/.mvn/timing.properties
+backend/.mvn/wrapper/maven-wrapper.jar
+
+# IDE and OS files
+.idea/
+.vscode/
+*.iml
+*.iws
+.DS_Store
+Thumbs.db
+
+# Logs
+backend/logs/
+*.log
