@@ -6,6 +6,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="organization")
 @AllArgsConstructor
@@ -22,7 +25,7 @@ public class Organization {
     private String organizationCode;
 
     @Column(nullable = false)
-    private String organizationName;
+    private String name;
 
     private String category; // e.g. "bank", "hospital", "others"
     private String address;
@@ -35,10 +38,16 @@ public class Organization {
     
     private String image; // URL to image
 
-    private Boolean isActive = true;
+    @JsonProperty("active")
+    private Boolean active = true;
 
     private LocalDateTime createdAt;
     
-    // Establishing mapping for fetching services and tokens later
-    // if needed (often better handled in DTOs, but added for completeness)
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Service> services;
+
+    @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Counter> counters;
 }

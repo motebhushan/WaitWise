@@ -43,8 +43,8 @@ public class CounterService {
 
     }
 
-    public List<Token> getWaitingList(String counterId,String status){
-        Counter counter = counterRepository.findById(Long.parseLong(counterId))
+    public List<Token> getWaitingList(String counterNumber,String status){
+        Counter counter = counterRepository.findByCounterNumber(counterNumber)
                 .orElseThrow(() -> new RuntimeException("Counter not found"));
 
         return tokenRepository

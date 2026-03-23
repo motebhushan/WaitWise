@@ -2,6 +2,7 @@ package com.example.waitwise.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="service")
@@ -26,5 +27,6 @@ public class Service {
 
     @ManyToOne
     @JoinColumn(name = "organization_id")
+    @JsonBackReference
     private Organization organization;
 }

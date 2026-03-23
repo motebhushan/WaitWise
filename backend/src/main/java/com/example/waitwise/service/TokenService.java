@@ -38,10 +38,15 @@ public class TokenService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
         token.setArrivalTime(LocalDateTime.now().format(formatter));
         
+        // Prevent PropertyValueException: not-null property references a null or transient value
+        if (token.getTokenNumber() == null) {
+            token.setTokenNumber("TEMP"); 
+        }
+
         token=tokenRepository.save(token);
         String tokenNumber = "T" + String.format("%03d", token.getTokenId());
         token.setTokenNumber(tokenNumber);
-        return token;
+        return tokenRepository.save(token);
     }
 
 

@@ -2,6 +2,7 @@ package com.example.waitwise.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +24,7 @@ public class Counter {
 
     @ManyToOne
     @JoinColumn(name = "organization_id")
+    @JsonBackReference
     private Organization organization;
 
     // Status can be "active" or "break"

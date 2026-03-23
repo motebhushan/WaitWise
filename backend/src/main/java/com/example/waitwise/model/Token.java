@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name = "token")
@@ -16,9 +18,11 @@ import java.time.LocalDateTime;
 public class Token {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty("id")
     private Long tokenId;
 
     @Column(nullable = false)
+    @JsonProperty("number")
     private String tokenNumber;
 
     private String customerName;
@@ -32,10 +36,12 @@ public class Token {
 
     @ManyToOne
     @JoinColumn(name = "organization_id")
+    @JsonBackReference
     private Organization organization;
 
     @ManyToOne
     @JoinColumn(name = "counter_id", nullable = true)
+    @JsonBackReference
     private Counter counter;
 
     private String arrivalTime; // Or LocalDateTime if formatting later
@@ -110,5 +116,10 @@ public class Token {
 
     public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
+    }
+
+    @JsonProperty("counterId")
+    public String getCounterIdProperty() {
+        return counter != null ? counter.getCounterNumber() : null;
     }
 }

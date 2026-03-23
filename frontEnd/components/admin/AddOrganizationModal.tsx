@@ -15,7 +15,7 @@ interface AddOrganizationModalProps {
 export function AddOrganizationModal({ onClose, onSuccess }: AddOrganizationModalProps) {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
-    organizationName: "",
+    name: "",
     organizationCode: "",
     description: "",
     address: "",
@@ -55,12 +55,12 @@ export function AddOrganizationModal({ onClose, onSuccess }: AddOrganizationModa
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="organizationName">Name</Label>
+              <Label htmlFor="name">Name</Label>
               <Input
-                id="organizationName"
+                id="name"
                 required
-                value={formData.organizationName}
-                onChange={(e) => setFormData({ ...formData, organizationName: e.target.value })}
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
             </div>
             <div className="space-y-2">

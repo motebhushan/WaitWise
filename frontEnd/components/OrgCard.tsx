@@ -20,7 +20,7 @@ export const OrgCard = ({ org }: OrgCardProps) => {
             whileHover={{ y: -5 }}
             className="glass rounded-[2rem] border border-white/10 hover:border-primary/50 transition-all duration-300 group flex flex-col h-full overflow-hidden"
         >
-            <Link href={`/organizations/details/${org.id}`} className="p-6 flex-1 flex flex-col">
+            <Link href={`/organizations/details/${org.id || org.organizationId}`} className="p-6 flex-1 flex flex-col">
                 <div className="relative w-full h-48 rounded-2xl overflow-hidden mb-6">
                     <img
                         src={org.image}

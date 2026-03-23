@@ -55,6 +55,7 @@ export default function OrganizationDetailPage() {
     }
 
     const handleGetToken = async (serviceId: string) => {
+        if (!org) return;
         if (!customerName || !customerMobile) {
             alert("Please enter both name and mobile to get a token.");
             return;
@@ -64,7 +65,7 @@ export default function OrganizationDetailPage() {
         const counterCode = "C001"; // Change matching your actual Counter config in backend if it's dynamic
         const tokenData = { customerName, number: customerMobile, serviceId };
         
-        const responseData = await generateToken(tokenData, org?.organizationCode || "ORG001", counterCode);
+        const responseData = await generateToken(tokenData, org.organizationCode || "", counterCode);
         
         if (responseData) {
             setGeneratedToken(responseData);
